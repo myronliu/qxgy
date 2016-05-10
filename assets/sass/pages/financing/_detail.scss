@@ -1,0 +1,79 @@
+
+///ProductDetail  Page  CSS
+.page-product-detail {
+  padding-bottom: 20px;
+  .part-top {
+    background-color: #ffffff;
+    padding-bottom: 8px;
+    padding-top: 10px;
+    &>div:first-child{
+      @extend .clearfix;
+      margin-left: 10px;
+      &>span:last-child{
+        margin-right: 10px;
+        float: right;
+        color: $priceColor;
+      }
+    }
+
+  }
+  .part-bottom {
+    background-color: #ffffff;
+    margin-top: 10px;
+  }
+  .part-but {
+    margin-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .product-rate {
+    text-align: center;
+    font-size: 40px;
+    color: $priceColor;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .product-explain {
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    text-align: center;
+    border-bottom: 1px solid #E1E1E1;
+    padding-bottom: 36px;
+    width: 90%;
+    margin: 36px auto;
+  }
+  .product-money {
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+  .product-money .total-money span, .product-money .last-money span {
+    display: block;
+  }
+  .product-money .total-money {
+    -webkit-box-flex: 2;
+  }
+  .product-money .last-money {
+    -webkit-box-flex: 1;
+    text-align: right;
+  }
+  .total-font, .last-font {
+    color: #9F9F9F;
+  }
+  .total-num, .total-num {
+    color: #444444;
+  }
+
+  .submit-but {
+    width: 80%;
+    height: 40px;
+    background-color: #3FA1ED;
+    color: #ffffff;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+  }
+}

@@ -1,0 +1,75 @@
+.buy{
+  &>.header{
+    background: white;
+    &>div:first-child{
+      padding:8px 0px 5px 15px;
+      color: $blueAColor;
+      border-bottom: 1px solid $borderColor;
+      font-size: 15px;
+    }
+    &>div:last-child{
+      padding-top: 10px;
+      &>div{
+        @extend .clearfix;
+        padding-bottom: 10px;
+        &>span:first-child{
+          margin-left: 15px;
+        }
+        &>span:nth-child(2){
+          float: right;
+          margin-right: 15px;
+        }
+      }
+
+    }
+  }
+  &>.miaoshu{
+    font-size:13px;
+    margin-left: 15px;
+  }
+  &>.licai{
+    &>.checkboxStyle{
+      width:20px;
+      height:20px;
+      display:inline-block;
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+    &>.protocolStyle{
+      font-size:13px;
+      display:inline-block;
+      position:absolute;
+      color: $titleColor;
+      &>span:nth-child(2){
+        color: $priceColor;
+      }
+    }
+  }
+  &>.xieyi{
+    &>.checkboxStyle{
+      width:20px;
+      height:20px;
+      display:inline-block;
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+    &>.protocolStyle{
+      font-size:13px;
+      display:inline-block;
+      position:absolute;
+      color: $titleColor;
+      &>.aStyle{
+        text-decoration:none;
+        color: $blueAColor;
+      }
+    }
+  }
+  &>.buy_center{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: white;
+  }
+  &>.button{
+    padding:15px;
+  }
+}

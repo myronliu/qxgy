@@ -20,15 +20,15 @@ module.exports = EvoFlux.createStore("api", {
         this.on("success",function(){
             var result= this.data.successData[this.url]
             var body=result.body
-            console.log(body)
+            // console.log(body)
             cb(this.url,body);
         }.bind(this));
     },
     addApiFail:function(cb){
-        this.on("fail",function(){
+        this.on("fail",function(a){
             var result= this.data.failData[this.url]
             var status=result.status
-            var message=result.message
+            var message=result.err
             var body=result.body
             console.log(result)
             cb(this.url,status,message,body);

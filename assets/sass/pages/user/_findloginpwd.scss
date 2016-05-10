@@ -1,0 +1,26 @@
+.findloginpwd{
+  .centerDiv{
+    margin-top: 15px;
+    background: white;
+  }
+  .button{
+    padding:15px;
+
+  }
+  .remind{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    &>.iconstyle{
+      float: left;
+      margin-right: 9px;
+      &>img{
+        width:18px;
+        height:18px;
+      }
+    }
+  }
+
+}

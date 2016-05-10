@@ -1,11 +1,11 @@
 var EvoFlux = require('evoflux');
 var Api = require('./ajax');
+var Cookie = require('./cookie');
 
 module.exports = EvoFlux.createAction("api",{
     post:function(url,param,cb,ajaxSet){
         if(!ajaxSet){
             ajaxSet=global.ajaxConfig
-
         }
         // if(process.browser){
         //     var auth=getCookie('auth');
@@ -13,7 +13,11 @@ module.exports = EvoFlux.createAction("api",{
         //     ajaxSet.header['X-KJT-AUTH']=(auth===undefined?'':auth);
         //     ajaxSet.header['X-SSO-Auth']=(ssoToken===undefined?'':ssoToken);
         // }
-
+        if(!cb){
+            param.account=param.account || Cookie.getCookie('account');
+            param.token=param.token || Cookie.getCookie('token');
+        }
+        // console.log(param)
         Api.init(ajaxSet).api.post(url)
             .send(param)
             .end(function(err,result){
@@ -33,7 +37,6 @@ module.exports = EvoFlux.createAction("api",{
     },
     requestEnd:function(err,result,url,cb){
         //console.log(err);
-
         if(err!=null||!result.body){
             console.log('========='+1);
             if(cb){
@@ -57,34 +60,34 @@ module.exports = EvoFlux.createAction("api",{
             }
 
         }else{
-            var status=result.body.status
-            if(cb){
-                if(status===undefined){
-                    cb({status:-1,message:'网络加载失败，请稍后重试'});
-                }else{
-                    cb(result.body);
-                }
+          var status=result.body.status
+          if(cb){
+            if(status===undefined){
+              cb({status:-1,message:'网络加载失败，请稍后重试'});
             }else{
-                console.log('===============')
-                console.log(result.body.status);
-                if(status===0){
-                    this.dispatch({
-                        actionType:"success",
-                        data:{
-                            result:result.body,
-                            url:url
-                        }
-                    })
-                }else{
-                    this.dispatch({
-                        actionType:"fail",
-                        data:{
-                            result:result.body,
-                            url:url
-                        }
-                    })
-                }
+              cb(result.body);
             }
+          }else{
+            // console.log('===============')
+            // console.log(result.body.status);
+            if(status===0){
+                this.dispatch({
+                  actionType:"success",
+                  data:{
+                    result:result.body,
+                    url:url
+                  }
+                })
+              }else{
+                this.dispatch({
+                  actionType:"fail",
+                  data:{
+                    result:result.body,
+                    url:url
+                  }
+                })
+              }
+          }
         }
     }
 })

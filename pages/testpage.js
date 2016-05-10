@@ -1,7 +1,7 @@
 var React = require('react');
 var ApiStore = require('../helper/apistore');
 var ApiAction = require('../helper/apiaction');
-var UrlConfig = require('../config/config');
+var UrlConfig = require('../config/urlconfig');
 
 module.exports = React.createClass({
   getInitialState: function(){

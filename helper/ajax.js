@@ -31,8 +31,10 @@ ajax.api = {
     return this
   },
   post: function(url){
-
     url=url.lastIndexOf('/',0)==0?url:('/'+url);
+    // console.log("post: url--------->");
+    // console.log(url);
+    // console.log(apiAddress);
     if(isService || !isCors){
       if(!isService){
       }
@@ -72,16 +74,18 @@ ajax.api = {
               console.log('服务器错误:'+err.message)
             }else{
               var status=res.body.status
+              console.log("response status----------->")
+              console.log(status)
               if(status!=0) {
                 console.log('业务错误:' + JSON.stringify(res.body))
-                console.log(res.body)
+                // console.log(res.body)
               }else{
                 if(process.env.NODE_ENV==='development'||process.env.NODE_ENV==='uat'){
                   var body=deepCopy(res.body.body);
                   if(body.auth!=undefined){
                     body.auth='';
                   }
-                  console.log('返回参数:' + JSON.stringify(body))
+                  // console.log('返回参数:' + JSON.stringify(body))
                 }
               }
             }

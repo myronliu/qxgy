@@ -12,9 +12,11 @@ router.post('*',function(req,res){
   // ajaxSet.header['X-SSO-Auth']=(ssoToken===undefined?'':ssoToken);
 
   ApiAction.post(req.url,req.body,function(data){
-    // res.json(data);
-    res.json("hehe")
-  },ajaxSet)
+    // console.log("response from localhost:3009=============>")
+    // console.log(data)
+    res.json(data);
+    // res.json("hehe")
+  })
 })
 router.get('*',function(req,res){
   ApiAction.get(req.url,function(data){

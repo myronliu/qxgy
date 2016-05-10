@@ -8,6 +8,18 @@ var Weixin_Config = require('../config/weixin');
 var CheckSignature = require('../services/weixin/checksignature');
 var ObjectToXML = require('../helper/objecttoxml');
 
+var Login = React.createFactory(require('../pages/user/login'));
+var Register = React.createFactory(require('../pages/user/register'));
+var Findpwd = React.createFactory(require('../pages/user/findpwd'));
+var Resetpwd = React.createFactory(require('../pages/user/resetpwd'));
+var Usercenter = React.createFactory(require('../pages/user/usercenter'));
+var Home = React.createFactory(require('../pages/home'));
+var ProductList = React.createFactory(require('../pages/order/productlist'));
+var Address = React.createFactory(require('../pages/order/address'));
+var AddAddress = React.createFactory(require('../pages/address/add'));
+var OrderList = React.createFactory(require('../pages/order/orderlist'));
+var ProductDetail = React.createFactory(require('../pages/products/detail'));
+
 var apiAddress = "http://a.com/";
 if(process.env.NODE_ENV != undefined){
   switch(process.env.NODE_ENV ){
@@ -27,18 +39,67 @@ if(process.env.NODE_ENV != undefined){
 }
 
 // TODO: 这里设置的是服务端发起请求的url设置
-global.ajaxSet = {url:apiAddress,header:{"Content-Type":"application/json","X-KJT-Agent": "h511111111111111111111111;h511111111111111111111111;h5;h5;;h5;h5;1.0.0;WIFI;h511111111111111111111111","X-KJT-AUTH": "","X-SSO-Auth":"","X-API-VER": "2.0"}}
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  var reactHtml = ReactDOMServer.renderToString(testpage());
-  console.log(reactHtml)
-  res.render('index', {reactOutput: reactHtml, title: 'testpage'});
-});
+// global.ajaxSet = {url:apiAddress,header:{"Content-Type":"application/json","X-KJT-Agent": "h511111111111111111111111;h511111111111111111111111;h5;h5;;h5;h5;1.0.0;WIFI;h511111111111111111111111","X-KJT-AUTH": "","X-SSO-Auth":"","X-API-VER": "2.0"}}
+global.ajaxConfig = {url:"http://localhost:3009",header:{'Content-Type': 'application/json','X-KJT-Agent': 'h511111111111111111111111;h511111111111111111111111;h5;h5;;h5;h5;1.0.0;WIFI;h511111111111111111111111','X-KJT-AUTH': '','X-SSO-Auth':'','X-API-VER': '2.0'}}
 
 router.get('/error', function(req, res, next) {
   var reactHtml = ReactDOMServer.renderToString(error());
   res.render('index', {reactOutput: reactHtml, title: 'testpage'});
+});
+
+router.get(['/','/home'], function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Home());
+  res.render('index', {reactOutput: reactHtml, title: '清新果园'});
+});
+
+router.get('/user/login', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Login({fromUrl: req.query.fromUrl}));
+  res.render('index', {reactOutput: reactHtml, title: '登录'});
+});
+
+router.get('/user/register', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Register());
+  res.render('index', {reactOutput: reactHtml, title: '注册'});
+});
+
+router.get('/user/findpwd', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Findpwd());
+  res.render('index', {reactOutput: reactHtml, title: '找回密码'});
+});
+
+router.get('/user/resetpwd', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Resetpwd());
+  res.render('index', {reactOutput: reactHtml, title: '重设密码'});
+});
+
+router.get('/user/usercenter', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Usercenter());
+  res.render('index', {reactOutput: reactHtml, title: '用户中心'});
+});
+
+router.get('/order/productlist', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(ProductList({shopId: req.query.shopId}));
+  res.render('index', {reactOutput: reactHtml, title: '预定'});
+});
+
+router.get('/order/orderlist', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(OrderList({type:req.query.type}));
+  res.render('index', {reactOutput: reactHtml, title: '订单'});
+});
+
+router.get('/order/address', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(Address({shopId: req.query.shopId}));
+  res.render('index', {reactOutput: reactHtml, title: '填写地址'});
+});
+
+router.get('/address/add', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(AddAddress());
+  res.render('index', {reactOutput: reactHtml, title: '新增地址'});
+});
+
+router.get('/products/detail', function(req, res, next) {
+  var reactHtml = ReactDOMServer.renderToString(ProductDetail({productid: req.query.productid}));
+  res.render('index', {reactOutput: reactHtml, title: '产品详情'});
 });
 
 router.get('/weixin/qxgy', function(req, res, next) {
