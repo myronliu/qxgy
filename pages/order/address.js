@@ -135,12 +135,13 @@ module.exports = React.createClass({
         return (
           <Layout hideBack={false} hideFooter={true} className={'index'} title={'预定'} rightItems={[rightBtn]}>
             <Loading showLoading={this.state.showLoading}/>
+            <div className='section' style={{marginTop:'20px'}}>填写地址</div>
+            <EditAddress ref="address" buyerName={this.state.buyerName} address={this.state.address} tel={this.state.tel}/>
+            <div style={{height: '2px', backgroundColor: 'white'}}></div>
             <div className='section'>已选列表</div>
             <div className='center-wrap'>
               {this.renderProducts()}
             </div>
-            <div className='section' style={{marginTop:'20px'}}>填写地址</div>
-            <EditAddress ref="address" buyerName={this.state.buyerName} address={this.state.address} tel={this.state.tel}/>
             <Book count={this.state.ordercount} amount={this.state.orderamount} handleBook={this.handleBook}/>
           </Layout>
         )

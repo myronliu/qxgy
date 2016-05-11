@@ -120,7 +120,7 @@ module.exports = React.createClass({
           <TitleInput title={'邮箱'} ref='email' inputWidth={'70%'} placeholder={'请输入邮箱,找回密码时使用'}/>
         </div>
         <div className='center_input'>
-          <PasswordText ref="loginpwd" content={"6-23位,数字、字母或字符"}  typecount={2} length={"6..23"} />
+          <PasswordText ref="loginpwd" content={"6-23位,数字、字母或字符"}  typecount={1} length={"6..23"} />
         </div>
         <div className='button'>
           <NextButton disabled={!this.state.checked}  onTouchEnd={this.nextBtnPress} title={'注册'}/>
