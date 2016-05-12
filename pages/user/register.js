@@ -10,6 +10,7 @@ var ApiStore = require('../../helper/apistore');
 var ApiAction =  require('../../helper/apiaction');
 var UrlConfig = require('../../config/urlconfig');
 var Cookie = require('../../helper/cookie');
+var md5 = require('md5');
 
 module.exports = React.createClass({
   getInitialState:function(){
@@ -92,7 +93,7 @@ module.exports = React.createClass({
       var psw = this.refs.loginpwd.state.password;
       var params={
         account: phone,
-        password: psw,
+        password: md5(psw),
         email: this.refs.email.state.value
       }
       this.showLoading(true)

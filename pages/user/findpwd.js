@@ -33,8 +33,8 @@ module.exports = React.createClass({
     this.showLoading(false)
     switch(url){
       case UrlConfig.userpwdreset:
-        Cookie.setCookie('account', body.account);
-        Cookie.setCookie('token', body.token);
+        // Cookie.setCookie('account', body.account);
+        // Cookie.setCookie('token', body.token);
         window.to('/user/login?fromUrl=/');
         break;
     }

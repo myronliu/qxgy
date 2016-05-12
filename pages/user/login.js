@@ -10,6 +10,7 @@ var ApiAction = require('../../helper/apiaction');
 var UrlConfig = require('../../config/urlconfig');
 var TwoBtnAlert = require('../../components/twobtnalert');
 var Cookie = require('../../helper/cookie');
+var md5 = require('md5');
 
 module.exports = React.createClass({
   getInitialState:function(){
@@ -78,7 +79,7 @@ module.exports = React.createClass({
           Toast.show('密码格式不正确', 1500);
       }else {
         this.showLoading(true)
-        ApiAction.post(UrlConfig.getuser,{account:loginName,password:psw})
+        ApiAction.post(UrlConfig.getuser,{account:loginName,password:md5(psw)})
       }
     }
   },
@@ -95,7 +96,7 @@ module.exports = React.createClass({
         </div>
         <div className='button'>
           <NextButton onTouchEnd={this.nextBtnPress} title={'登录'}/>
-          <a href='javascript:window.to("/user/findloginpwd")'>忘记密码</a>
+          <a href='javascript:window.to("/user/findpwd")'>忘记密码</a>
           <a href='javascript:window.to("/user/register")'>新用户注册</a>
         </div>
       </Layout>

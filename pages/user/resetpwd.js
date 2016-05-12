@@ -12,6 +12,7 @@ var SmsCodeText = require('../../components/smscodetext');
 var UrlConfig = require('../../config/urlconfig');
 var CheckBox = require('../../components/checkbox');
 var getCookie = require('../../helper/getCookie');
+var md5 = require('md5');
 
 module.exports = React.createClass({
   getInitialState:function(){
@@ -79,8 +80,8 @@ module.exports = React.createClass({
       var params={
         account: account,
         token: token,
-        oldpwd: old,
-        newpwd: newpwd
+        oldpwd: md5(old),
+        newpwd: md5(newpwd)
       }
       this.showLoading(true);
       ApiAction.post(UrlConfig.userpwdupdate, params);
