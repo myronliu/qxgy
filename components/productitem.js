@@ -91,7 +91,7 @@ module.exports = React.createClass({
     // })
   },
   nextPage: function(){
-    window.to("/user/login");
+    window.to("/products/detail?productid="+this.props.data._id)
   },
   add: function(){
     if(this.state.count<99){

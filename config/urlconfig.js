@@ -3,6 +3,7 @@ module.exports={
   homeHeaders:'/home/headers',
   getshops: '/getshops',
   getproducts: '/getproducts',
+  getproductbyid: '/getproductbyid',//根据id获取产品信息
   getproductsbyids: '/getproductsbyids',
   createorder: '/createorder',//创建订单
   userregister: '/userregister', //用户注册
