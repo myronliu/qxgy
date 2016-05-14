@@ -124,7 +124,7 @@ module.exports = React.createClass({
                 />
               </div>
               <div style={contentstyle}>
-                <div style={shopname}>{this.props.data.shopName}</div>
+                <div style={shopname}>{this.props.data.name}</div>
                 <div style={type}>{"价格：" + this.props.data.price + "元／"+this.props.data.unit}</div>
                 <div style={selfoperation}>{"库存：" + (true ? "充足":this.props.data.stock)}</div>
               </div>
